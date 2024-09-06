@@ -1,0 +1,40 @@
+<!------------------------- login works! -------------------------->
+
+<div class="container my-5">
+    <form class="px-5" [formGroup]="loginForm" (ngSubmit)="login()">
+        @if(errorMessage){
+        <div class="alert alert-danger m-auto w-50 text-center" role="alert">{{errorMessage}}</div>}
+        <h2 class="mb-3">Login Now :</h2>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1">
+        </div>
+        @if ( loginForm.controls['email'].touched) {
+        @if(loginForm.controls['email'].errors?.['required']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Email is required!</div>}
+        @if(loginForm.controls['email'].errors?.['email']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Enter Valid Email !</div>}
+        }
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        @if ( loginForm.controls['password'].touched) {
+        @if(loginForm.controls['password'].errors?.['required']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Password is required!</div>}
+        @if(loginForm.controls['password'].errors?.['pattern']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">password must start with upperCase then from 6 to more any chars,
+            number!</div>}
+        }
+        <div class="d-flex justify-content-end align-items-center mt-3">
+            <a class="px-3 text-main a:hover" routerLink="/forgetpassword">ForGet Password</a>
+            <button [disabled]="loginForm.invalid" type="submit" class="btn bg-main text-white">
+                Login
+                @if (loader) {
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                }
+            </button>
+        </div>
+    </form>
+</div>

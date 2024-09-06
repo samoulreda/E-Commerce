@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-main-light">
+    <div class="container">
+        <a class="navbar-brand">
+            <img src="assets/images/freshcart-logo.svg" alt="freshcart-logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            @if (isLogin) {
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="home"
+                        routerLinkActive="text-main">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="cart"
+                        routerLinkActive="text-main">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="products"
+                        routerLinkActive="text-main">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="categories"
+                        routerLinkActive="text-main">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="brands"
+                        routerLinkActive="text-main">Brands</a>
+                </li>
+            </ul>
+            }
+            <div class="d-flex align-items-center">
+                @if (isLogin) {
+                    <div class="d-flex gap-3 px-4">
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-tiktok"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                        <i class="fa-solid fa-cart-shopping text-main cursor-pointer"></i>
+                    </div>
+                }
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    @if (!isLogin) {
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" routerLink="login"
+                            routerLinkActive="text-main">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" routerLink="register"
+                            routerLinkActive="text-main">Register</a>
+                    </li>
+                    }
+                    @if (isLogin) {
+                    <li class="nav-item">
+                        <a class="nav-link active cursor-pointer"(click)="logout()" aria-current="page" >Logout</a>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
