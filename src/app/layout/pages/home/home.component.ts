@@ -9,11 +9,13 @@ import { FormsModule } from '@angular/forms';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CartService } from '../../..//project/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CarouselModule, RouterLink, UpperCasePipe, LowerCasePipe, CurrencyPipe, SearchPipe, FormsModule],
+  imports: [CarouselModule, RouterLink, UpperCasePipe, LowerCasePipe, CurrencyPipe, SearchPipe, FormsModule,TranslateModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

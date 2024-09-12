@@ -15,8 +15,6 @@ export class LoginComponent {
   loader: boolean = false;
   constructor(private _AuthService: AuthService, private routes: Router) {}
 
-
-
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z][A-Za-z0-9]{4}/)]),
@@ -35,7 +33,7 @@ export class LoginComponent {
       },
       error: (err) => {
         this.loader = false;
-        this.errorMessage = err.error.message;
+        // this.errorMessage = err.error.message;
       }
     })
   }

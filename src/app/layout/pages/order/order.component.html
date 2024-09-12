@@ -1,0 +1,47 @@
+<!------------------------- login works! -------------------------->
+
+<div class="container my-5">
+    <form class="px-5" [formGroup]="shippingAddress" (ngSubmit)="cearteOrders()">
+
+        <h2 class="mb-3">Cearte Orders :</h2>
+        <!-- one -->
+        <div class="mb-3">
+            <label for="exampleInputDetails" class="form-label">Details</label>
+            <input formControlName="details" type="details" class="form-control" id="exampleInputDetails">
+        </div>
+        @if ( shippingAddress.controls['details'].touched) {
+        @if(shippingAddress.controls['details'].errors?.['required']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">details is required!</div>}
+        }
+        <!-- two -->
+        <div class="mb-3">
+            <label for="exampleInputPhone" class="form-label">Phone</label>
+            <input formControlName="phone" type="phone" class="form-control" id="exampleInputPhone">
+        </div>
+        @if ( shippingAddress.controls['phone'].touched) {
+        @if(shippingAddress.controls['phone'].errors?.['required']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">phone is required!</div>}
+        }
+        <!-- three -->
+        <div class="mb-3">
+            <label for="exampleInputCity" class="form-label">City</label>
+            <input formControlName="city" type="city" class="form-control" id="exampleInputCity">
+        </div>
+        @if ( shippingAddress.controls['city'].touched) {
+        @if(shippingAddress.controls['city'].errors?.['required']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">city is required!</div>}
+        }
+
+
+
+        <div class="d-flex justify-content-end align-items-center mt-3">
+            <!--[disabled]="shippingAddress.invalid"  -->
+            <button  type="submit" class="btn bg-main text-white">
+                Cearte Orders
+                @if (loader) {
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                }
+            </button>
+        </div>
+    </form>
+</div>

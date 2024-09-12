@@ -46,7 +46,7 @@ export class RegisterComponent {
       },
       error: (err) => {
         this.loader = false;
-        this.errorMessage = err.error.message;
+        // this.errorMessage = err.error.message;
       }
     })
   }

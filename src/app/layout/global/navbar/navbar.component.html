@@ -12,53 +12,76 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="home"
-                        routerLinkActive="text-main">Home</a>
+                        routerLinkActive="text-main">{{'Home'|translate}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="cart"
-                        routerLinkActive="text-main">Cart</a>
+                        routerLinkActive="text-main">{{'Cart'|translate}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="products"
-                        routerLinkActive="text-main">Products</a>
+                        routerLinkActive="text-main">{{'Products'|translate}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="categories"
-                        routerLinkActive="text-main">Categories</a>
+                        routerLinkActive="text-main">{{'Categories'|translate}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="brands"
-                        routerLinkActive="text-main">Brands</a>
+                        routerLinkActive="text-main">{{'Brands'|translate}}</a>
                 </li>
             </ul>
             }
             <div class="d-flex align-items-center">
                 @if (isLogin) {
-                    <div class="d-flex gap-3 px-4">
-                        <i class="fa-brands fa-instagram"></i>
-                        <i class="fa-brands fa-facebook"></i>
-                        <i class="fa-brands fa-tiktok"></i>
-                        <i class="fa-brands fa-twitter"></i>
-                        <i class="fa-brands fa-linkedin"></i>
-                        <i class="fa-brands fa-youtube"></i>
-                        <i class="fa-solid fa-cart-shopping text-main cursor-pointer"></i>
-                    </div>
+                <div class="d-flex gap-3 px-4">
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-tiktok"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-solid fa-cart-shopping text-main cursor-pointer"></i>
+                </div>
                 }
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     @if (!isLogin) {
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" routerLink="login"
-                            routerLinkActive="text-main">Login</a>
+                            routerLinkActive="text-main">{{'Login'|translate}}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" routerLink="register"
-                            routerLinkActive="text-main">Register</a>
+                            routerLinkActive="text-main">{{'Register'|translate}}</a>
                     </li>
                     }
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{'language'|translate}}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a class="nav-link active cursor-pointer" (click)="chingeLang('en')"
+                                    aria-current="page">EN</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active cursor-pointer" (click)="chingeLang('ar')"
+                                    aria-current="page">AR</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
                     @if (isLogin) {
                     <li class="nav-item">
-                        <a class="nav-link active cursor-pointer"(click)="logout()" aria-current="page" >Logout</a>
+                        <a class="nav-link active cursor-pointer" (click)="logout()"
+                            aria-current="page">{{'Logout'|translate}}</a>
                     </li>
+
+
+                    
+
                     }
                 </ul>
             </div>
