@@ -1,36 +1,22 @@
-export interface myCart {
-    status: string
-    numOfCartItems: number
-    cartId: string
-    data: Data
-}
 
-export interface Data {
-    _id: string
-    cartOwner: string
-    products: Product[]
-    createdAt: string
-    updatedAt: string
-    __v: number
-    totalCartPrice: number
-}
-
-export interface Product {
-    count: number
-    _id: string
-    product: Product2
-    price: number
-}
-
-export interface Product2 {
+export interface IWishlist {
+    sold: number
+    images: string[]
     subcategory: Subcategory[]
+    ratingsQuantity: number
     _id: string
     title: string
+    slug: string
+    description: string
     quantity: number
+    price: number
     imageCover: string
     category: Category
     brand: Brand
     ratingsAverage: number
+    createdAt: string
+    updatedAt: string
+    __v: number
     id: string
 }
 
@@ -39,7 +25,7 @@ export interface Subcategory {
     name: string
     slug: string
     category: string
-}
+} 
 
 export interface Category {
     _id: string

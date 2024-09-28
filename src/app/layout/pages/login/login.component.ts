@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../project/services/auth.service';
+import { AuthService } from '../../../project/services/Auth/auth.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -13,6 +13,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 export class LoginComponent {
   errorMessage !: string;
   loader: boolean = false;
+  mgSuccess: boolean = false;
   constructor(private _AuthService: AuthService, private routes: Router) {}
 
   loginForm: FormGroup = new FormGroup({
@@ -25,16 +26,17 @@ export class LoginComponent {
     this.loader = true;
     this._AuthService.handelLogin(this.loginForm.value).subscribe({
       next: (data) => {
-
         localStorage.setItem('userToken',data.token);
         this._AuthService.getUser()
         this.loader = false;
-        this.routes.navigate(['/home']);
+        if (data.message == 'success') {
+          this.mgSuccess = true;
+          setTimeout(() => {
+            this.routes.navigate(['/home'])
+          }, 3000)
+        }
+        ;
       },
-      error: (err) => {
-        this.loader = false;
-        // this.errorMessage = err.error.message;
-      }
     })
   }
 }

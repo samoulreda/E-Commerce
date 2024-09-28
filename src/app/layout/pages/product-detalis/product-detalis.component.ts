@@ -1,7 +1,8 @@
-import { oProduct, product } from '../../../project/interfaces/product';
+import { oProduct } from '../../../project/interfaces/product';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductService } from '../../..//project/services/product.service';
+import { ProductService } from '../../..//project/services/product/product.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-product-detalis',
@@ -13,9 +14,12 @@ import { ProductService } from '../../..//project/services/product.service';
 export class ProductDetalisComponent implements OnInit {
   id!: string;
   product!:oProduct;
-  constructor(private _ActivatedRoute: ActivatedRoute, private _ProductService:ProductService) {
+  constructor(
+    private _ActivatedRoute: ActivatedRoute,
+    private _ProductService:ProductService) {
   }
   ngOnInit(): void {
+    
     this._ActivatedRoute.paramMap.subscribe((res: any) => {
       if (typeof localStorage != 'undefined') {
         this.id = res['params'].id;
@@ -24,8 +28,8 @@ export class ProductDetalisComponent implements OnInit {
       this._ProductService.getProduct(this.id).subscribe({
         next:(data)=>{
           this.product=data.data;
+          
         },
-        error:(data)=>{}
       })
     })
   }

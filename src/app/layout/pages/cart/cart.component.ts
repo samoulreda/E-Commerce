@@ -1,10 +1,10 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { CartService } from '../../..//project/services/cart.service';
 
+import { Component, NgZone, OnInit } from '@angular/core';
+import { CartService } from '../../..//project/services/cart/cart.service';
 import { Router, RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
-import { Product } from '../../../project/interfaces/cart';
 import { ToastrService } from 'ngx-toastr';
+import { Product } from '../../../project/interfaces/cart';
 
 
 @Component({
@@ -15,27 +15,26 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './cart.component.scss'
 })
 export class CartComponent implements OnInit {
-
   product!: Product[];
   id!: string;
-  constructor(private _CartService: CartService, private _ToastrService:ToastrService,
-    private _Router:Router,private ngZone:NgZone
+  
+  constructor(
+    private _CartService: CartService,
+    private _ToastrService: ToastrService,
+    private _Router: Router, private ngZone: NgZone
   ) {
     if (typeof localStorage != 'undefined') {
       localStorage.setItem('page', '/cart')
     };
   }
   ngOnInit(): void {
+    
     this._CartService.getCart().subscribe({
       next: (data) => {
-
         this.product = data.data.products,
           this.id = data.cartId
 
       },
-      error: (data) => {
-
-      }
     })
   }
   ubdateQantity(id: string, count: number) {
@@ -45,9 +44,6 @@ export class CartComponent implements OnInit {
         this.product = data.data.products,
           this._ToastrService.success("update is success")
       },
-      error: (data) => {
-
-      }
     })
   }
 
@@ -55,16 +51,27 @@ export class CartComponent implements OnInit {
     this._CartService.deleteProductFromCart(id).subscribe({
       next: (data) => {
         this.product = data.data.products,
+        this._CartService.cartNumber.next(data.numOfCartItems);
           this._ToastrService.success("update is success")
       },
-      error: (data) => {
+    })
+  }
 
+  clear() {
+    this._CartService.clearCart().subscribe({
+      next: (data) => {
+        if (data.message == 'success') {
+          this.product = [];
+          this._CartService.cartNumber.next(data.numOfCartItems);
+        }
+        this._ToastrService.success("your cart clear")
       }
     })
   }
-  orderPage(){
-    this.ngZone.run(()=>{
-      this._Router.navigate(['order',this.id])
+
+  orderPage() {
+    this.ngZone.run(() => {
+      this._Router.navigate(['order', this.id])
     })
   }
 }

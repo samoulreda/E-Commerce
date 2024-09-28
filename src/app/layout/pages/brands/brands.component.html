@@ -1,1 +1,17 @@
-<p>brands works!</p>
+<div class="container my-4 pt-5">
+    <h1 class="text-center text-main mb-4 ">All Brands </h1>
+    <div class="row g-3">
+        @for (brand of Brands; track $index) {
+        <div class="col-lg-3 mb-3">
+            <div class="card cursor-pointer product">
+                <div class="">
+                <img [src]="brand.image" class="img-fluid" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{brand.name}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+</div>

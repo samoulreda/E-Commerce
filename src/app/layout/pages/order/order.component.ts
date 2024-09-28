@@ -2,8 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrderService } from '../../../project/services/order.service';
-import { CartService } from '../../../project/services/cart.service';
+import { OrderService } from '../../../project/services/order/order.service';
+import { CartService } from '../../../project/services/cart/cart.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-order',
@@ -20,13 +21,20 @@ export class OrderComponent implements OnInit {
     phone:new FormControl(null,[Validators.required]),
     city:new FormControl(null,[Validators.required]),
   })
-  constructor(private _ActivatedRoute: ActivatedRoute,private router:Router ,private _OrderService:OrderService, private _CartService:CartService){}
+  constructor(
+    private _ActivatedRoute: ActivatedRoute,
+    private router:Router ,
+    private _OrderService:OrderService, 
+    
+    private _CartService:CartService){}
   ngOnInit(): void {
+   
   this._CartService.getCart().subscribe({
     next:(data)=>{
       if(!data.numOfCartItems){
         this.router.navigate(['/allorders'])
       }
+      
     }
   })
 

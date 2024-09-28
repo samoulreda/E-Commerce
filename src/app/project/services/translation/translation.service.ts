@@ -19,9 +19,9 @@ export class TranslationService implements OnInit {
   setlang() {
     const language: string = localStorage.getItem('lang')!;
     this._TranslateService.use(language);
-    if (language == 'en') {
+    if (language === 'en') {
       document.body.dir = 'ltr';
-    } else if (language == 'ar') {
+    } else if (language === 'ar') {
       document.body.dir = 'rtl';
     }
   }

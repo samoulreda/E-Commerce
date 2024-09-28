@@ -1,1 +1,17 @@
-<p>categories works!</p>
+<div class="container my-4 pt-5">
+<h1 class="text-center text-main mb-4 "> Popular Categories</h1>
+    <div class="row g-3">
+        @for (Category of Categories; track $index) {
+        <div class="col-lg-3 mb-3">
+            <div class="card cursor-pointer product">
+                <div class="">
+                <img [src]="Category.image" height="300px" class="w-100 mb-3" [alt]="Category.name">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-main">{{Category.name}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+</div>

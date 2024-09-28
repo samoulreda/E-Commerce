@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from '../environment/environment';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../environment/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  
+
   constructor(private http: HttpClient) { }
+
+  cartNumber: BehaviorSubject<number> = new BehaviorSubject(0);
 
   addToCart(data: any): Observable<any> {
     return this.http.post<any>(environment.url + 'cart', data);

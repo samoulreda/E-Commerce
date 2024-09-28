@@ -1,6 +1,7 @@
 {
     "Home" :"Home" ,
     "Cart" :"Cart" ,
+    "Wish List" :"Wish List" ,
     "Products" :"Products" ,
     "Categories" :"Categories" ,
     "Brands" :"Brands" ,
@@ -8,5 +9,5 @@
     "Register" : "Register",
     "Logout" : "Logout",
     "Add To Cart" : "Add To Cart",
-   "language" : "language"
+    "lang" : "lang"
 }

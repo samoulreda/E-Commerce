@@ -1,69 +1,78 @@
 <!-------------------- --- Register works! ------------------------>
-<div class="container my-5">
-    <form class="px-5" [formGroup]="registerForm" (ngSubmit)="register()">
+<div class="container pt-5 my-5">
+
+    <form class="px-5 shadow bg-main-light rounded-4 p-3" [formGroup]="registerForm" (ngSubmit)="register()">
         @if(errorMessage){
-            <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">{{errorMessage}}</div>}
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">{{errorMessage}}</div>}
         <h2 class="mb-3">Register Now :</h2>
+        @if (mgSuccess) {
+            <div class="alert alert-success m-auto w-50 text-center text-main" role="alert">Success</div>}
         <div class="mb-3">
             <label for="exampleInputName" class="form-label">Name</label>
             <input formControlName="name" type="text" class="form-control" id="exampleInputName">
         </div>
-        @if ( registerForm.controls['name'].touched) {
+        @if ( registerForm.controls['name'].touched||registerForm.controls['name'].dirty) {
         @if(registerForm.controls['name'].errors?.['required']){
         <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">The name is required!</div>}
         @if(registerForm.controls['name'].errors?.['minlength']){
-        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Name Should be more than or equal 3 chars!</div>}
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Name Should be more than or
+            equal 3 chars!</div>}
         @if(registerForm.controls['name'].errors?.['maxlength']){
-        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Name Should be less than or equal 15 chars!</div>}
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Name Should be less than or
+            equal 15 chars!</div>}
         }
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email</label>
             <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1">
         </div>
-        @if ( registerForm.controls['email'].touched) {
-            @if(registerForm.controls['email'].errors?.['required']){
-            <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Email is required!</div>}
-            @if(registerForm.controls['email'].errors?.['email']){
-            <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Enter Valid Email !</div>}
-            }
+        @if ( registerForm.controls['email'].touched||registerForm.controls['email'].dirty) {
+        @if(registerForm.controls['email'].errors?.['required']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Email is required!</div>}
+        @if(registerForm.controls['email'].errors?.['email']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Enter Valid Email !</div>}
+        }
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
         </div>
-        @if ( registerForm.controls['password'].touched) {
-            @if(registerForm.controls['password'].errors?.['required']){
-            <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Password is required!</div>}
-            @if(registerForm.controls['password'].errors?.['pattern']){
-            <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">password must start with upperCase then from 6 to more any chars, number!</div>}
-            }
+        @if ( registerForm.controls['password'].touched||registerForm.controls['password'].dirty) {
+        @if(registerForm.controls['password'].errors?.['required']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Password is required!</div>}
+        @if(registerForm.controls['password'].errors?.['pattern']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">password must start with
+            upperCase then from 6 to more any chars, number!</div>}
+        }
         <div class="mb-3">
             <label for="exampleInputPassword2" class="form-label">rePassword</label>
             <input formControlName="rePassword" type="password" class="form-control" id="exampleInputPassword2">
         </div>
-        @if ( registerForm.controls['rePassword'].touched) {
-            @if(registerForm.controls['rePassword'].errors?.['required']){
-            <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">rePassword is required!</div>}
-            @if(registerForm.controls['rePassword'].errors?.['pattern']){
-            <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">password must start with upperCase then from 6 to more any chars, number!</div>}
-            @if(registerForm.errors?.['mismatch']){
-                <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Password confirmation is not match!</div>}
-            }
+        @if ( registerForm.controls['rePassword'].touched||registerForm.controls['rePassword'].dirty) {
+        @if(registerForm.controls['rePassword'].errors?.['required']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">rePassword is required!</div>}
+        @if(registerForm.controls['rePassword'].errors?.['pattern']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">password must start with
+            upperCase then from 6 to more any chars, number!</div>}
+        @if(registerForm.errors?.['mismatch']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Password confirmation is not
+            match!</div>}
+        }
         <div class="mb-3">
             <label for="exampleInputPhone" class="form-label">Phone</label>
-            <input formControlName="phone" type="text" class="form-control" id="exampleInputPhone">
+            <input formControlName="phone" type="tel" class="form-control" id="exampleInputPhone">
         </div>
-        @if ( registerForm.controls['phone'].touched) {
-            @if(registerForm.controls['phone'].errors?.['required']){
-            <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Phone is required!</div>}
-            @if(registerForm.controls['phone'].errors?.['pattern']){
-            <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert"> Sorry, We accept only egypt phone numbers!</div>}
-            }
+        @if ( registerForm.controls['phone'].touched||registerForm.controls['phone'].dirty) {
+        @if(registerForm.controls['phone'].errors?.['required']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert">Phone is required!</div>}
+        @if(registerForm.controls['phone'].errors?.['pattern']){
+        <div class="alert alert-danger m-auto w-50 text-center text-danger" role="alert"> Sorry, We accept only egypt
+            phone numbers!</div>}
+        }
         <div class="d-flex justify-content-end mt-3">
             <button [disabled]="registerForm.invalid" type="submit" class="btn bg-main text-white">
-                Register  
-               @if (loader) {
+                Register
+                @if (loader) {
                 <i class="fa-solid fa-spinner fa-spin"></i>
-               }
+                }
             </button>
         </div>
     </form>

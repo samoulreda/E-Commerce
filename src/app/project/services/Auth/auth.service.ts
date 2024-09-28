@@ -1,12 +1,12 @@
-import { resetPassword } from '../interfaces/resetPassword';
-import { verifyCode } from '../interfaces/verifyCode';
-import { forget } from '../interfaces/forget';
-import { login } from '../interfaces/login';
+import { resetPassword } from '../../interfaces/resetPassword';
+import { verifyCode } from '../../interfaces/verifyCode';
+import { forget } from '../../interfaces/forget';
+import { login } from '../../interfaces/login';
 import { HttpClient } from '@angular/common/http';
 import { afterNextRender, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from '../environment/environment';
-import { register } from '../interfaces/register';
+import { environment } from '../../environment/environment';
+import { register } from '../../interfaces/register';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../project//services/auth.service';
+import { AuthService } from '../../../project//services/Auth/auth.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-forgetpassword',
@@ -32,7 +33,10 @@ export class ForgetpasswordComponent {
 
   constructor(private _AuthService: AuthService, private routes: Router) { }
 
-  sendEmail() {
+  sendEmail():void {
+
+    const emailValue= this.emailForm.get('email')?.value;
+    this.resetPasswordForm.get('email')?.patchValue(emailValue)
     this.loader = true;
     this._AuthService.forgetpassword(this.emailForm.value).subscribe({
       next: (data) => {
@@ -40,14 +44,10 @@ export class ForgetpasswordComponent {
         this.finishedForm1=true;
         // this.routes.navigate(['/login']);
       },
-      error: (err) => {
-        this.loader = false;
-        // this.errorMessage = err.error.message;
-      }
     })
   }
 
-  verifyCode() {
+  verifyCode():void {
     this.loader = true;
     this._AuthService.verifyResetCode(this.codeForm.value).subscribe({
       next: (data) => {
@@ -55,14 +55,10 @@ export class ForgetpasswordComponent {
         this.finishedForm2=true;
         // this.routes.navigate(['/login']);
       },
-      error: (err) => {
-        this.loader = false;
-        // this.errorMessage = err.error.message;
-      }
     })
   }
 
-  resetPassword() {
+  resetPassword():void {
     this.loader = true;
     this._AuthService.resetPassword(this.resetPasswordForm.value).subscribe({
       next: (data) => {
@@ -71,10 +67,6 @@ export class ForgetpasswordComponent {
         this.loader = false;
         this.routes.navigate(['/home']);
       },
-      error: (err) => {
-        this.loader = false;
-        // this.errorMessage = err.error.message;
-      }
     })
   }
 }
